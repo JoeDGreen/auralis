@@ -3,6 +3,7 @@ import json
 import logging
 import uuid
 import os
+import http
 from websockets import serve, exceptions
 
 logging.basicConfig(level=logging.INFO)
@@ -163,10 +164,17 @@ async def handler(websocket, path):
                 
         await broadcast_lobby()
 
+async def process_request(path, request_headers):
+    # Render health checks will send an HTTP request without upgrade headers.
+    # Return 200 OK so Render knows the service is alive.
+    if "upgrade" not in request_headers.get("Connection", "").lower():
+        return (http.HTTPStatus.OK, [], b"Auralis Server Running\n")
+    return None
+
 async def main():
     HOST = "0.0.0.0"
     PORT = int(os.environ.get("PORT", 8765))
-    server = await serve(handler, HOST, PORT)
+    server = await serve(handler, HOST, PORT, process_request=process_request)
     logging.info(f"Auralis Signaling server started on ws://{HOST}:{PORT}")
     await server.wait_closed()
 
