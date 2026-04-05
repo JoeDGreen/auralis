@@ -55,7 +55,8 @@ async def broadcast_room_state(room_name):
         except:
             pass
 
-async def handler(websocket, path):
+async def handler(*args):
+    websocket = args[0]
     client_id = str(uuid.uuid4())
     lobby_clients[client_id] = websocket
     logging.info(f"Client {client_id} connected to Lobby.")
@@ -164,10 +165,10 @@ async def handler(websocket, path):
                 
         await broadcast_lobby()
 
-async def process_request(path, request_headers):
-    # Render health checks will send an HTTP request without upgrade headers.
-    # Return 200 OK so Render knows the service is alive.
-    if "upgrade" not in request_headers.get("Connection", "").lower():
+async def process_request(*args):
+    request = dict(args[1]) if hasattr(args[1], 'items') else getattr(args[1], 'headers', args[1])
+    conn_header = request.get('Connection', '') if hasattr(request, 'get') else request.get('Connection', '')
+    if 'upgrade' not in str(conn_header).lower():
         return (http.HTTPStatus.OK, [], b"Auralis Server Running\n")
     return None
 
@@ -180,3 +181,7 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
+
+
+
