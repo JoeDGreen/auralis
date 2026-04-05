@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auralis User Manual</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #f7f7f7;
+            color: #2b2b2b;
+            padding: 2rem;
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            color: #004c99;
+        }
+        h1 {
+            font-size: 2.5rem;
+            border-bottom: 2px solid #004c99;
+            padding-bottom: 0.5rem;
+        }
+        h2 {
+            margin-top: 2rem;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 0.25rem;
+        }
+        code {
+            background-color: #e6e6e6;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+        ul {
+            margin-bottom: 1.5rem;
+        }
+        .callout {
+            background-color: #e6f2ff;
+            border-left: 4px solid #004c99;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header role="banner">
+        <h1>Auralis User Manual</h1>
+        <p><strong>A fully accessible, Clubhouse-style audio communication platform.</strong></p>
+    </header>
+
+    <main role="main">
+        <nav role="navigation" aria-label="Table of Contents">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#introduction">1. Introduction</a></li>
+                <li><a href="#starting-auralis">2. Starting Auralis</a></li>
+                <li><a href="#the-lobby">3. The Lobby</a></li>
+                <li><a href="#hosting-a-room">4. Hosting a Room</a></li>
+                <li><a href="#listening-in-a-room">5. Listening in a Room</a></li>
+                <li><a href="#raising-hand-speaking">6. Raising Your Hand & Speaking</a></li>
+                <li><a href="#audio-cues">7. Audio Cues (Earcons)</a></li>
+                <li><a href="#troubleshooting">8. Troubleshooting</a></li>
+            </ul>
+        </nav>
+
+        <section id="introduction">
+            <h2>1. Introduction</h2>
+            <p>Welcome to <strong>Auralis</strong>, an accessible application designed for hosting and participating in live voice rooms. Inspired by platforms like Clubhouse, Auralis separates users into "Hosts," "Speakers," and an "Audience."</p>
+            <p>Auralis operates securely over peer-to-peer WebRTC connections and adheres strictly to WCAG 3 accessibility standards, providing full screen reader support and explicit sound feedback for an effortless navigational experience.</p>
+        </section>
+
+        <section id="starting-auralis">
+            <h2>2. Starting Auralis</h2>
+            <p>Auralis comprises two parts: a lightweight background server to connect users, and the primary application interface.</p>
+            <ol>
+                <li><strong>Start the Server:</strong> Open the <code>Communicate</code> folder and double-click <code>Server_Manager.pyw</code>. Once the manager window opens, press the <strong>Start Server</strong> button. Your screen reader will announce that the server is now running.</li>
+                <li><strong>Launch the App:</strong> Leave the Server Manager window open, return to your folder, and double-click <code>Launch_App.bat</code>. This will open the main Auralis application.</li>
+            </ol>
+            <div class="callout">
+                <p><strong>Accessibility Note:</strong> When managing the server, your focus begins directly on the "Start Server" button, and dynamically shifts to the "Stop" button once the server is actively running.</p>
+            </div>
+        </section>
+
+        <section id="the-lobby">
+            <h2>3. The Lobby</h2>
+            <p>When you start Auralis, you are immediately placed in the <strong>Lobby</strong>. Here, your microphone is entirely deactivated to ensure complete privacy.</p>
+            <p>In the Lobby, you are presented with:</p>
+            <ul>
+                <li>A text input to type your chosen display name.</li>
+                <li>A dynamic list of "Active Rooms" currently being hosted on the network.</li>
+                <li>A section at the bottom allowing you to start your own room.</li>
+            </ul>
+        </section>
+
+        <section id="hosting-a-room">
+            <h2>4. Hosting a Room</h2>
+            <p>To host a room, navigate to the "Start a New Room" section in the Lobby:</p>
+            <ol>
+                <li>Ensure you have typed your name in the provided text field.</li>
+                <li>Type your desired room topic or title into the "Room Name" text field.</li>
+                <li>Press the <strong>Create & Host Room</strong> button.</li>
+            </ol>
+            <p>Upon creating the room, Auralis will politely request access to your microphone, and your microphone will immediately become <strong>LIVE</strong> as you are transitioned to the "Stage" as the Host.</p>
+            <p>Use the **Mute Microphone** button to toggle your audio output at any time. Screen reader logic will confirm whether you are transmitting or muted.</p>
+        </section>
+
+        <section id="listening-in-a-room">
+            <h2>5. Listening in a Room</h2>
+            <p>If you see an active room in the Lobby and wish to listen to the conversation:</p>
+            <ol>
+                <li>Locate the room in the "Active Rooms" list using your Tab key.</li>
+                <li>Press the <strong>Join Room</strong> button next to the desired room.</li>
+            </ol>
+            <p>You will join the room strictly as an <strong>Audience member</strong>. This role is completely passive, meaning Auralis will <em>not</em> even request microphone access. You can relax, listen, and participate safely.</p>
+        </section>
+
+        <section id="raising-hand-speaking">
+            <h2>6. Raising Your Hand & Speaking</h2>
+            <p>If you want to contribute to the discussion while in the Audience, you can ask the Host for permission to speak.</p>
+            <ol>
+                <li>Press the <strong>Raise Hand to Speak</strong> button.</li>
+                <li>Your status will update to "Hand Raised" and you will hear a chime.</li>
+                <li>The Host will receive an alert. If the Host approves your request, Auralis will announce "You are now a speaker!" and will seamlessly ask for your microphone permission to place you onto the Stage.</li>
+            </ol>
+        </section>
+
+        <section id="audio-cues">
+            <h2>7. Audio Cues (Earcons)</h2>
+            <p>To reduce auditory clutter caused by screen reader chatter, Auralis features specialized sound effects (Earcons) that inform you of system events purely through tone:</p>
+            <ul>
+                <li><strong>Happy Ascending Bloop:</strong> You successfully joined a room.</li>
+                <li><strong>Sad Descending Bloop:</strong> You successfully left a room and returned to the Lobby.</li>
+                <li><strong>Bright Chime:</strong> (If you are a Host) An audience member just raised their hand.</li>
+                <li><strong>Tactile Click:</strong> You successfully toggled your microphone Mute state.</li>
+            </ul>
+        </section>
+
+        <section id="troubleshooting">
+            <h2>8. Troubleshooting</h2>
+            <ul>
+                <li><strong>"Status: Disconnected" on Launch:</strong> Ensure that you started the Server using the <code>Server_Manager.pyw</code> application before opening the app. If the app opened before the server started, simply close Auralis and reopen it.</li>
+                <li><strong>Other Users Cannot Join My Room:</strong> If testing with multiple friends over the broad internet, verify that your TURN server credentials inside of the <code>renderer.js</code> code block are accurate and supplied by a functioning TURN provider.</li>
+            </ul>
+        </section>
+    </main>
+
+</body>
+</html>

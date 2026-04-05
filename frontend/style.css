@@ -1,0 +1,126 @@
+:root {
+  --background-color: #f7f7f7;
+  --text-color: #2b2b2b;
+  --focus-ring: #004c99; /* High-contrast blue */
+  --btn-bg: #e6e6e6;
+  --btn-hover: #cccccc;
+  --action-inactive: #f0c3c3; /* For muted state in meetings */
+  --action-green: #2e7d32;   /* For live state in meetings */
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 1.5rem;
+  max-width: 600px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.sr-only {
+  /* Screen reader only class */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.status-indicator {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* User Setup */
+.user-setup, .create-room-box {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+input[type="text"] {
+  width: 100%;
+  font-size: 1.25rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 2px solid #555;
+  box-sizing: border-box;
+  margin-top: 0.5rem;
+}
+
+input[type="text"]:focus {
+  outline: 4px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+
+button {
+  font-size: 1.25rem;
+  padding: 0.75rem 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 2px solid #555;
+  background-color: var(--btn-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  display: block;
+  width: 100%;
+}
+
+button:focus {
+  outline: 4px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+
+button:hover {
+  background-color: var(--btn-hover);
+}
+
+.primary-btn {
+  background-color: #0056b3;
+  color: white;
+}
+
+.secondary-btn {
+  background-color: #e0e0e0; 
+}
+
+.action-btn.meeting-mode[aria-pressed="true"] {
+  background-color: var(--action-green);
+  color: white;
+  border-color: #1b5e20;
+}
+.action-btn.meeting-mode[aria-pressed="false"] {
+  background-color: var(--action-inactive); 
+  color: #333;
+}
+
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ddd;
+}
+.stage-area, .audience-area {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.stage-area { background-color: #f0f7ff; }
+.audience-area { background-color: #f9f9f9; }

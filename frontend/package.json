@@ -1,0 +1,26 @@
+{
+  "name": "auralis",
+  "version": "1.0.0",
+  "description": "An accessible WebRTC Clubhouse-style app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win"
+  },
+  "build": {
+    "appId": "com.accessible.auralis",
+    "productName": "Auralis",
+    "mac": {
+      "category": "public.app-category.social-networking"
+    },
+    "win": {
+      "target": "nsis"
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^29.2.0",
+    "electron-builder": "^24.13.3"
+  }
+}

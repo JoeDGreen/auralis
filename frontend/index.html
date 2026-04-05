@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Auralis</title>
+</head>
+<body>
+    <header role="banner">
+        <!-- Made focusable so we can skip directly to it when going to Lobby -->
+        <h1 id="lobby-title" tabindex="-1">Auralis Lobby</h1>
+    </header>
+    
+    <main role="main">
+        <div id="status-polite" aria-live="polite" class="sr-only" aria-atomic="true">Connecting to server lobby...</div>
+        <div id="status-assertive" aria-live="assertive" class="sr-only" aria-atomic="true"></div>
+        
+        <p id="visible-status" aria-hidden="true" class="status-indicator">Connecting to network...</p>
+
+        <!-- LOBBY SCREEN -->
+        <section id="lobby-section" aria-label="Lobby">
+            <div class="user-setup">
+                <label for="username-input">Your Name:</label>
+                <input type="text" id="username-input" placeholder="e.g., Sarah">
+            </div>
+
+            <h2>Active Rooms</h2>
+            <ul id="rooms-list" aria-label="Available Rooms to Join">
+                <li>No active rooms. Create one!</li>
+            </ul>
+
+            <div class="create-room-box">
+                <h3>Start a New Room</h3>
+                <label for="new-room-name">Room Name:</label>
+                <input type="text" id="new-room-name" placeholder="e.g., Morning Coffee">
+                <button id="createRoomBtn" class="primary-btn">Create & Host Room</button>
+            </div>
+        </section>
+
+        <!-- ROOM SCREEN -->
+        <section id="room-section" aria-label="Inside Room" style="display: none;">
+            <!-- Made focusable to trap screen reader here instantly when they join -->
+            <h2 id="room-title" tabindex="-1">Room: ...</h2>
+            
+            <div class="stage-area">
+                <h3>🎤 The Stage (Speakers)</h3>
+                <ul id="speakers-list" aria-live="polite"></ul>
+            </div>
+
+            <div class="audience-area">
+                <h3>🎧 The Audience (Listening)</h3>
+                <ul id="audience-list" aria-live="polite"></ul>
+            </div>
+
+            <div class="action-bar">
+                <p id="role-instructions" class="sr-only" tabindex="-1">You are listening.</p>
+                
+                <!-- If Audience -->
+                <button id="raiseHandBtn" class="secondary-btn" style="display: none;">Raise Hand to Speak</button>
+                
+                <!-- If Speaker/Host -->
+                <button id="muteBtn" class="action-btn meeting-mode" aria-pressed="true" style="display: none;">
+                    Mute Microphone
+                </button>
+
+                <!-- If Host getting requests -->
+                <div id="host-requests" aria-live="polite"></div>
+
+                <button id="leaveRoomBtn" style="background-color: #d64040; color: white; margin-top: 1rem;">Leave Room</button>
+            </div>
+        </section>
+
+        <div id="remote-audios" aria-hidden="true"></div>
+    </main>
+    <script src="renderer.js"></script>
+</body>
+</html>
